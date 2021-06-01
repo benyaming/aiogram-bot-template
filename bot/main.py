@@ -5,10 +5,11 @@ from aiogram.utils.executor import start_polling, start_webhook
 
 import bot.handlers
 from bot.misc import bot, dp, logger
+from bot.middleware import sentry_context_middleware
 
 
 def fix_imports():
-    _ = bot.handlers
+    _ = bot.handlers = sentry_context_middleware
 
 
 async def on_start(_):
