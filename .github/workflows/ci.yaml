@@ -1,4 +1,4 @@
-name: {{PROJECT NAME}} CI
+name: {{PROJECT_NAME}} CI
 
 on:
   push:
@@ -13,12 +13,12 @@ jobs:
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Build
-        run: docker build -t {{PROJECT TAG}} -f Dockerfile .
+        run: docker build -t {{PROJECT_TAG}} -f Dockerfile .
       - name: Tags
         run: |
-          docker tag {{PROJECT TAG}} ${{ secrets.DOCKER_USER }}/{{PROJECT TAG}}:${{ github.sha }}
-          docker tag {{PROJECT TAG}} ${{ secrets.DOCKER_USER }}/{{PROJECT TAG}}:beta
+          docker tag {{PROJECT_TAG}} ${{ secrets.DOCKER_USER }}/{{PROJECT_TAG}}:${{ github.sha }}
+          docker tag {{PROJECT_TAG}} ${{ secrets.DOCKER_USER }}/{{PROJECT_TAG}}:beta
       - name: Push
         run: |
-          docker push ${{ secrets.DOCKER_USER }}/{{PROJECT TAG}}:${{ github.sha }}
-          docker push ${{ secrets.DOCKER_USER }}/{{PROJECT TAG}}:latest
+          docker push ${{ secrets.DOCKER_USER }}/{{PROJECT_TAG}}:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USER }}/{{PROJECT_TAG}}:latest
